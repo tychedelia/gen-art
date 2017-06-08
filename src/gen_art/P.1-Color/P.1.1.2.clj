@@ -12,11 +12,11 @@
 
 (defn draw-state [state]
   (q/background 360)
-  (let [angle-step (/ 360 8)
+  (let [angle-step (/ 360 10)
         radius 300]
     (q/begin-shape :triangle-fan)
     (q/vertex (/ (q/width) 2) (/ (q/height) 2))
-    (doseq [angle (range 0 360 angle-step)
+    (doseq [angle (range 0 361 angle-step)
             :let [vx (+ (/ (q/width) 2) (* (q/cos (q/radians angle)) radius))
                   vy (+ (/ (q/height) 2) (* (q/sin (q/radians angle)) radius))]]
       (q/vertex vx vy)
