@@ -4,6 +4,7 @@
 
 (defn setup []
   (q/frame-rate 1)
+  (q/no-stroke)
   (q/color-mode :hsb 360 100 100))
 
 (defn update-state [state])
