@@ -12,7 +12,7 @@
 
 (defn draw-state [state]
   (q/background 360)
-  (let [angle-step (/ 360 10)
+  (let [angle-step (/ 360 6)
         radius 300]
     (q/begin-shape :triangle-fan)
     (q/vertex (/ (q/width) 2) (/ (q/height) 2))
