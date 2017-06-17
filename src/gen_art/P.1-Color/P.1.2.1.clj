@@ -3,14 +3,15 @@
             [quil.middleware :as m]))
 
 (defn setup []
-  (q/frame-rate 1)
+  (q/frame-rate 30)
+  (q/stroke-weight 0)
   (q/no-stroke)
   (q/color-mode :hsb 360 100 100))
 
 (defn update-state [state])
 
 (defn rand-color-right [x]
-  (q/color (q/random 160 190) 100 (q/random 0 100)))
+  (q/color (q/random 0 1090) 190 (q/random 0 100)))
 
 (defn rand-color-left [x]
   (q/color (q/random 0 60) (q/random 0 100) 100))
@@ -37,7 +38,7 @@
 
 (q/defsketch gen-art
   :title "Color spectrum in a circle"
-  :size [720 720]
+  :size [1920 720]
   :setup setup
   :update update-state
   :draw draw-state

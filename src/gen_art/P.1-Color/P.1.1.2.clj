@@ -5,6 +5,7 @@
 (defn setup []
   (q/frame-rate 30)
   (q/color-mode :hsb 360 (q/width) (q/height))
+  (q/smooth)
   7)
 
 (defn update-state [state]
@@ -12,7 +13,7 @@
 
 (defn draw-state [state]
   (q/background 360)
-  (let [angle-step (/ 360 6)
+  (let [angle-step (/ 360 3)
         radius 300]
     (q/begin-shape :triangle-fan)
     (q/vertex (/ (q/width) 2) (/ (q/height) 2))
@@ -26,7 +27,7 @@
 
 (q/defsketch gen-art
   :title "Color spectrum in a circle"
-  :size [720 720]
+  :size [720 720 ]
   :setup setup
   :update update-state
   :draw draw-state
