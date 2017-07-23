@@ -1,4 +1,4 @@
-(ns gen-art.P.1-Color.P.1.0
+(ns gen-art.Color.P10
   (:require [quil.core :as q]
             [quil.middleware :as m]))
 

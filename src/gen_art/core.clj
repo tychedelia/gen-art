@@ -9,7 +9,7 @@
    :angle 0})
 
 (defn update-state [state]
-  {:color (mod (+ (:color state) 0.7) 255)
+  {:color (mod (+ (:color state) 0.7) 0)
    :angle (+ (:angle state) 0.1)})
 
 (defn draw-state [state]
@@ -20,7 +20,7 @@
         y (* 150 (q/sin angle))]
     (q/with-translation [(/ (q/width) 2)
                          (/ (q/height) 2)]
-      (q/ellipse x y 10 10))))
+      (q/ellipse x y 240 240))))
 
 (q/defsketch gen-art
   :title "You spin my circle right round"

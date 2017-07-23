@@ -1,4 +1,4 @@
-(ns gen-art.P.1-Color.P.1.1.2
+(ns gen-art.Color.P112
   (:require [quil.core :as q]
             [quil.middleware :as m]))
 
@@ -13,7 +13,7 @@
 
 (defn draw-state [state]
   (q/background 360)
-  (let [angle-step (/ 360 3)
+  (let [angle-step (/ 360 6)
         radius 300]
     (q/begin-shape :triangle-fan)
     (q/vertex (/ (q/width) 2) (/ (q/height) 2))

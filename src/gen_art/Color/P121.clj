@@ -1,4 +1,4 @@
-(ns gen-art.P.1-Color.P.1.2.1
+(ns gen-art.Color.P121
   (:require [quil.core :as q]
             [quil.middleware :as m]))
 
@@ -22,8 +22,7 @@
         tile-width (/ (q/width) tile-count-x)
         tile-height (/ (q/height) tile-count-y)
         colors-left (vec (map rand-color-left (range 0 tile-count-y)))
-        colors-right (vec (map rand-color-right (range 0 tile-count-y)))
-        ]
+        colors-right (vec (map rand-color-right (range 0 tile-count-y)))]
     (doseq [grid-x (range 0 tile-count-x)
             grid-y (range 0 tile-count-y)
             :let [col1 (get colors-left grid-y 360)
