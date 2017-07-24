@@ -4,7 +4,7 @@
 
 (defn path [x] (clojure.java.io/as-relative-path x))
 
-(def img (q/load-image (path "./resources/a.jpg")))
+(def img (q/load-image "a.jpg"))
 
 (defn setup []
   (q/no-cursor)
@@ -16,9 +16,7 @@
 
 (defn draw-state []
   (let [tile-count (/ (q/width) (max (q/mouse-x) 5))
-        rect-size (/ (q/width) tile-count)]
-
-    )
+        rect-size (/ (q/width) tile-count)]))
 
 (q/defsketch gen-art
   :title "Color palettes from images"
