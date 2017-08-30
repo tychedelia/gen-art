@@ -13,10 +13,10 @@
   (let [tile-count (/ (q/width) (max (q/mouse-x) 5))
         rect-size  (/ (q/width) tile-count)
         colors (for [grid-x (range tile-count)
-                        grid-y (range tile-count)
-                        :let [px (* grid-x rect-size)
-                              py (* grid-y rect-size)]]
-                    (q/get-pixel (:img state) (q/random 0 255) (q/random 0 255)))]
+                     grid-y (range tile-count)
+                     :let [px (* grid-x rect-size)
+                           py (* grid-y rect-size)]]
+                 (q/get-pixel (:img state) px py))]
     (assoc state
            :tile-count tile-count
            :rect-size rect-size
@@ -25,11 +25,14 @@
 (defn draw-state [state]
   (let [{tile-count  :tile-count
          rect-size   :rect-size
-         colors      :colors} state]
+         colors      :colors} state
+        ;; moving index over 2D array
+         !i          (atom 0)]
     (doseq [grid-x (range tile-count)
             grid-y (range tile-count)]
-      (q/fill (nth colors grid-x 0))
-      (q/rect (* grid-x rect-size) (* grid-y rect-size) rect-size rect-size))))
+      (q/fill (nth colors @!i))
+      (q/rect (* grid-x rect-size) (* grid-y rect-size) rect-size rect-size)
+      (swap! !i inc))))
 
 (q/defsketch gen-art
   :title "Color palettes from images"
