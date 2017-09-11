@@ -14,10 +14,10 @@
   (q/color (q/random 0 1090) 190 (q/random 0 100)))
 
 (defn rand-color-left [x]
-  (q/color (q/random 0 60) (q/random 0 100) 100))
+  (q/color (q/random 0 60) (q/random 0 100) 255))
 
 (defn draw-state [state ]
-  (let [tile-count-x (q/map-range (q/mouse-x) 0 (q/width) 2 100)
+  (let [tile-count-x (q/map-range (q/mouse-x) 0 (q/width) 2 50)
         tile-count-y (q/map-range (q/mouse-y) 0 (q/height) 2 10)
         tile-width (/ (q/width) tile-count-x)
         tile-height (/ (q/height) tile-count-y)
@@ -32,15 +32,14 @@
       (q/fill inter-col)
       (let [pos-x (* tile-width grid-x)
             pos-y (* tile-height grid-y)]
-        (q/rect pos-x pos-y tile-width tile-height)))
-    ))
+        (q/rect pos-x pos-y tile-width tile-height)))))
 
 (q/defsketch gen-art
-  :title "Color spectrum in a circle"
+  :title "hue, saturation..."
   :size [1920 720]
   :setup setup
   :update update-state
   :draw draw-state
-  :features [:keep-on-top]
+  :features [:no-bind-output :keep-on-top]
   :middleware [m/fun-mode m/pause-on-error])
 
