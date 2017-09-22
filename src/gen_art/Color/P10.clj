@@ -11,6 +11,7 @@
   {:state 1})
 
 (defn update-state [state]
+  (println (.-colorMode (.-g (quil.applet/current-applet))))
   ;; we could read vals here
   state)
 
@@ -26,5 +27,5 @@
   :setup setup
   :update update-state
   :draw draw-state
-  :features [:keep-on-top]
+  :features [:no-bind-output :keep-on-top]
   :middleware [m/fun-mode m/pause-on-error])
