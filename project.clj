@@ -6,4 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/core.match "0.3.0-alpha5"]
                  [quil "2.6.0"]]
-  :resource-paths ["resources", "library"])
+  :resource-paths ["resources",
+                   "lib/gstreamer-java.jar"
+                   "lib/jna.jar"
+                   "lib/video.jar"])
