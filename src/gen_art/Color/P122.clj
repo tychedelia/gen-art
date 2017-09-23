@@ -1,7 +1,8 @@
 (ns gen-art.Color.P122
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [gen-art.util :as u]))
+            [gen-art.util :as u]
+            [gen-art.util.sort-colors :as s]))
 
 (defn setup []
   (q/no-cursor)
@@ -21,13 +22,13 @@
     (assoc state
            :tile-count tile-count
            :rect-size rect-size
-           :colors colors)))
+           :colors (s/sort-colors :sort-mode/hue colors))))
 
 (defn draw-state [state]
   (let [ {tile-count  :tile-count
           rect-size   :rect-size
           colors      :colors} state
-        !i           (atom 0) ]
+         !i           (atom 0) ]
 
     (doseq [ grid-x (range tile-count)
              grid-y (range tile-count) ]

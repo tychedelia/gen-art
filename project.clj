@@ -6,4 +6,4 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/core.match "0.3.0-alpha5"]
                  [quil "2.6.0"]]
-  :resource-paths ["resources"])
+  :resource-paths ["resources", "library"])

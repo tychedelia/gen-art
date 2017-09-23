@@ -1,7 +1,6 @@
-(ns gen-art.util.sort-colorss
+(ns gen-art.util.sort-colors
   (:require [quil.core :as q]
             [clojure.core.match :refer [match]]))
-
 
 ;; -----------------------
 ;; color modes
@@ -87,6 +86,3 @@
          [:sort-mode/grayscale] (grayscale colors)
          [:sort-mode/alpha] (alpha colors)
          :else colors))
-
-
-(sort-colors :sort-mode/red [1 2 3])
