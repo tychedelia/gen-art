@@ -24,7 +24,8 @@
 
 (defn draw-state [state]
   (q/background 2 89 15)
-  (q/image (:pixels state)))
+  (q/image (:camera state) 100 100)
+  )
 
 (q/defsketch videotest
   :size [1280 720]
