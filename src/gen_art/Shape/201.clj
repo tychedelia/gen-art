@@ -9,7 +9,7 @@
 (defn draw-state [state]
   (q/stroke-cap :square)
   (q/smooth)
-  (q/no-stroke)
+  (q/no-fill)
   (q/background 255)
   (q/translate (/ (q/width) 2) (/ (q/height) 2))
   (q/stroke-weight (q/abs (/ (q/mouse-y) 20)))
