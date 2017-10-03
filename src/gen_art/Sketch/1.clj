@@ -26,6 +26,9 @@
            (q/stroke c)
            (q/line i y i (+ y h)))))
 
+
+;; this doesn't work
+;; use unchecked-byte?
 (defn inc-wrap [n]
   (let [num (if (= 0 (Math/round (Math/random)))
                (+ n (Math/floor (* (Math/random) 100)))
