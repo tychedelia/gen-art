@@ -17,7 +17,7 @@
          (doseq [i (range y h)
                  :let [inter (q/map-range i y (+ y h) 0 1)
                        c     (q/lerp-color c1 c2 inter)]]
-           (q/stroke (* c 10))
+           (q/stroke (* c 3))
            (q/line x i (+ x w) i))
          [:x-axis]
          (doseq [i (range x w)
