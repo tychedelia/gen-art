@@ -27,16 +27,15 @@
            (q/line i y i (+ y h)))))
 
 
-;; this doesn't work
-;; use unchecked-byte?
 (defn inc-wrap [n]
   (let [num (if (= 0 (Math/round (Math/random)))
                (+ n (Math/floor (* (Math/random) 100)))
                (- n (Math/floor (* (Math/random) 100))))]
+    (println num)
     (cond
-      (> n 254) 2
-      (<= n 0)  1
-      (and (< num 255) (>= 0 num)) num
+      (> num 254) 254
+      (<= num 0)  1
+      (or (< num 255) (>= 0 num)) num
       :else (inc-wrap num))))
 
 (defn mutate [[r g b a]]
