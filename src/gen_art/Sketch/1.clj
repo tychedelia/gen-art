@@ -17,7 +17,7 @@
          (doseq [i (range y h)
                  :let [inter (q/map-range i y (+ y h) 0 1)
                        c     (q/lerp-color c1 c2 inter)]]
-           (q/stroke c)
+           (q/stroke (* c 10))
            (q/line x i (+ x w) i))
          [:x-axis]
          (doseq [i (range x w)
@@ -31,7 +31,6 @@
   (let [num (if (= 0 (Math/round (Math/random)))
                (+ n (Math/floor (* (Math/random) 100)))
                (- n (Math/floor (* (Math/random) 100))))]
-    (println num)
     (cond
       (> num 254) 254
       (<= num 0)  1
@@ -46,7 +45,7 @@
     3 [r g (inc-wrap b) a])))
 
 (defn setup []
-  (q/frame-rate 24)
+  (q/frame-rate 25)
   {:bg-color (rand-nth background-colors)
    :mutator  (rand-nth background-colors)})
 
@@ -59,12 +58,14 @@
         [r2 g2 b2 a2] (:mutator state)
         c1 (q/color r1 g1 b1 a1)
         c2 (q/color r2 g2 b2 a2)]
-  (q/background r1 g1 b1 a1)
-  (set-gradient 0 0 (q/width) (q/height) c1 c2 :y-axis)))
+    (q/no-fill)
+    ;; (q/background c2)
+    (q/stroke-weight 10)
+    (set-gradient 0 0 (q/width) (q/height) c1 c2 :y-axis)))
 
 (q/defsketch gen-art
   :title "Hello, shape"
-  :size [600 600]
+  :size [1000 1000]
   :setup setup
   :update update-state
   :draw draw-state
