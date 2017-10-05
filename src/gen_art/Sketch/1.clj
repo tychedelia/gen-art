@@ -2,7 +2,6 @@
   (:require [quil.core :as q]
             [quil.middleware :as m]
             [clojure.core.match :refer [match]]))
-
 (def background-colors
   [[255 255 0   0.25]
    [0   255 0   0.25]
@@ -17,6 +16,7 @@
          (doseq [i (range y h)
                  :let [inter (q/map-range i y (+ y h) 0 1)
                        c     (q/lerp-color c1 c2 inter)]]
+
            (q/stroke (* c 3))
            (q/line x i (+ x w) i))
          [:x-axis]
@@ -45,7 +45,7 @@
     3 [r g (inc-wrap b) a])))
 
 (defn setup []
-  (q/frame-rate 25)
+  (q/frame-rate 60)
   {:bg-color (rand-nth background-colors)
    :mutator  (rand-nth background-colors)})
 
