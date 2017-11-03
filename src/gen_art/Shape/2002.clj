@@ -10,7 +10,7 @@
   (if (q/mouse-pressed?)
     (do
       (q/push-matrix)
-      (q/translate ( / (q/width) 2) (/ (q/height) 2)))
+      (q/translate ( / (q/width) 2) (/ (q/height) 2))
     (let [circ-res (q/map-range (+ (q/mouse-y) 100) 0 (q/height) 2 10)
           radius   (+ (- (q/mouse-x) (/ (q/width) 2)) 0.5)
           angle    (/ q/TWO-PI circ-res)]
@@ -18,13 +18,11 @@
       (q/stroke 0 25)
       (q/begin-shape)
       (doseq [i (range circ-res)
-              :let [x (* (q/cos (+ angle i)) radius)
-                    y (* (q/sin(+ angle i)) radius)]]
-        (q/vertex x y)
-        )
+              :let [x (+ 0 (* (q/cos (+ angle i)) radius))
+                    y (+ 0 (* (q/sin(+ angle i)) radius))]]
+        (q/vertex x y))
       (q/end-shape)
-      (q/pop-matrix))))
-
+      (q/pop-matrix)))))
 
 (q/defsketch gen-art
   :title "Hello, shape"
