@@ -3,16 +3,16 @@
             [quil.middleware :as m]))
 
 ;; CONSTANTS
-(def  point-count      200)
-(def  freq-x            4)
-(def  freq-y            7)
-(def  mod-freq-x        3)
-(def  mod-freq-y        2)
-(def  line-weight       1)
-(def  line-color        0)
-(def  line-alpha        50)
-(def  connection-radius 80)
-(def  connection-ramp   6)
+(def settings { :point-count 200
+               :freq-x 4
+               :freq-y 7
+               :mod-freq-x 3
+               :mod-freq-y 2
+               :line-weight 1
+               :line-color 0
+               :line-alpha 50
+               :connection-radius 80
+               :connection-ramp  6 })
 
 ;; VARS
 (def !phi         (atom 15))
@@ -21,7 +21,7 @@
 (defn point [x y] [x y])
 
 ;; LIFECYCLE
-(defn calc-points []
+(defn calc-points [{:keys [point-count freq-x freq-y mod-freq-x mod-freq-y]}]
   (for [i (range point-count)
         :let [angle (q/map-range i 0 point-count 0 q/TWO-PI)
               x     (* (q/sin (+ (q/radians @!phi) (* angle freq-x))) (q/cos (* angle mod-freq-x)))
@@ -34,13 +34,13 @@
   (swap! !phi (fn [x] (q/random 0 360))))
 
 (defn setup []
-  (calc-points))
+  (calc-points settings))
 
 (defn update [points]
   (update-vars)
-  (calc-points))
+  (calc-points settings))
 
-(defn draw [points]
+(defn lissa [{:keys [line-weight point-count connection-radius line-color line-alpha]} points]
   (q/color-mode :rgb)
   (q/background 255)
   (q/stroke-weight line-weight)
@@ -60,10 +60,11 @@
 
     (if (< d connection-radius)
       (do (q/stroke line-color (* a line-alpha))
-          (q/line x1 y1 x2 y2))))
+          (q/line x1 y1 x2 y2)
+          (q/pop-matrix)))))
 
-  (q/pop-matrix))
-
+(defn draw [points]
+  (lissa settings points))
 
 (q/defsketch gen-art
   :title "Lissajous"
