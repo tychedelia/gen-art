@@ -16,10 +16,9 @@
   state)
 
 (defn draw-state [state]
-   (q/background (/ (q/mouse-y) 2) 100 100)
+  (q/background (/ (q/mouse-y) 2) 100 100)
   (q/fill (/ (- 360 (q/mouse-y)) 2) 100 100)
-  (q/rect 360 360 (+ (q/mouse-x) 1) (+ (q/mouse-x) 1))
-  )
+  (q/rect 360 360 (+ (q/mouse-x) 1) (+ (q/mouse-x) 1)))
 
 (q/defsketch gen-art
   :title "Hello, color"
