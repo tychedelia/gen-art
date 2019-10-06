@@ -45,18 +45,18 @@
         {:pos-x pos-x :pos-y pos-y}))
 
 
-(defn positions [{:keys [pos seq len]}]
-  (if (= len (count seq))
-    (util/rmap pos seq len)
+(defn positions [{:keys [pos vals len]}]
+  (if (<= len (count vals))
+    (util/rmap pos vals len)
     (let [pos (update-pos pos)
-          seq (conj seq pos)]
-      (positions (util/rmap pos seq len)))))
+          vals (conj vals pos)]
+      (positions (util/rmap pos vals len)))))
 
 (defn update-state [state]
-  (positions (assoc state :len (q/mouse-x) :seq [])))
+  (positions (assoc state :len (q/mouse-x) :vals [])))
 
-(defn draw-state [{:keys [seq]}]
-  (doseq [{pos-x :pos-x pos-y :pos-y} seq]
+(defn draw-state [{:keys [vals]}]
+  (doseq [{pos-x :pos-x pos-y :pos-y} vals]
     (q/fill 0 40)
     (q/ellipse (+ pos-x (/ step-size 2)) (+ pos-y (/ step-size 2)) diameter diameter)))
 
