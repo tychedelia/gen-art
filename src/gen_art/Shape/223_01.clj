@@ -37,10 +37,24 @@
     (aset y i (float (+ (aget y i) (q/random (- step-size) step-size)))))
   state)
 
+(defn update-mouse-press [state]
+  (if (q/mouse-pressed?)
+    (do
+      (doseq [i (range form-resolution)
+              :let [angle (q/radians (/ 360 (float form-resolution)))
+                    radius (* init-radius (q/random 0.5 1.0))]]
+        (aset (:x state) i (float (* (q/cos (* angle i)) radius)))
+        (aset (:y state) i (float (* (q/sin (* angle i)) radius))))
+      (assoc state
+             :center-x (q/mouse-x)
+             :center-y (q/mouse-y))))
+    state)
+
 (defn update-state [state]
   (-> state
       (update-center)
-      (update-points)))
+      (update-points)
+      (update-mouse-press)))
 
 (defn draw-state [{:keys [x y center-x center-y filled]}]
   (if filled
